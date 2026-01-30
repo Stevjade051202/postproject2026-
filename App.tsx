@@ -1,21 +1,22 @@
 import React, { useState } from 'react';
-import { Sidebar } from './components/Sidebar';
-import { Home } from './components/Home';
-import { NewProduct } from './components/NewProduct';
-import { Checkout } from './components/Checkout';
-import { Orders } from './components/Orders';
-import { Products } from './components/Products';
-import { SmartAssistant } from './components/SmartAssistant';
-import { OnlineCatalog } from './components/OnlineCatalog';
-import { Coupons } from './components/Coupons';
-import { Customers } from './components/Customers';
-import { Transactions } from './components/Transactions';
-import { Analytics } from './components/Analytics';
-import { Users } from './components/Users';
-import { Settings } from './components/Settings';
-import { Help } from './components/Help';
-import { Login } from './components/Login';
-import { AdminPanel } from './components/AdminPanel';
+import { Sidebar } from './components/Sidebar.tsx';
+import { Home } from './components/Home.tsx';
+import { NewProduct } from './components/NewProduct.tsx';
+import { Checkout } from './components/Checkout.tsx';
+import { Orders } from './components/Orders.tsx';
+import { Products } from './components/Products.tsx';
+import { SmartAssistant } from './components/SmartAssistant.tsx';
+import { OnlineCatalog } from './components/OnlineCatalog.tsx';
+import { Coupons } from './components/Coupons.tsx';
+import { Customers } from './components/Customers.tsx';
+import { Transactions } from './components/Transactions.tsx';
+import { Analytics } from './components/Analytics.tsx';
+import { Users } from './components/Users.tsx';
+import { Settings } from './components/Settings.tsx';
+import { Help } from './components/Help.tsx';
+import { Login } from './components/Login.tsx';
+import { AdminPanel } from './components/AdminPanel.tsx';
+import { Account } from './components/Account.tsx';
 import { Menu } from 'lucide-react';
 
 const App: React.FC = () => {
@@ -36,7 +37,6 @@ const App: React.FC = () => {
   };
 
   const handleNavigate = (view: string) => {
-    // Basic RBAC Guard
     const adminOnlyViews = ['analytics', 'users', 'settings', 'admin-panel', 'finance'];
     if (userRole === 'staff' && adminOnlyViews.includes(view)) {
       setActiveView('home');
@@ -53,7 +53,6 @@ const App: React.FC = () => {
 
   return (
     <div className="flex h-screen bg-gray-100 overflow-hidden font-sans text-slate-800">
-      {/* Mobile Sidebar Overlay */}
       {isSidebarOpen && (
         <div 
           className="fixed inset-0 bg-black/50 z-20 lg:hidden"
@@ -61,7 +60,6 @@ const App: React.FC = () => {
         />
       )}
 
-      {/* Sidebar */}
       <div className={`
         fixed inset-y-0 left-0 z-30 transform transition-transform duration-300 ease-in-out
         lg:relative lg:translate-x-0
@@ -75,10 +73,7 @@ const App: React.FC = () => {
         />
       </div>
 
-      {/* Main Content */}
       <div className="flex-1 flex flex-col h-full overflow-hidden relative">
-        
-        {/* Render View Based on State */}
         {activeView === 'home' && (
           <div className="flex-1 h-full flex flex-col overflow-hidden">
             <div className="lg:hidden bg-white border-b p-4 flex items-center gap-3">
@@ -88,6 +83,18 @@ const App: React.FC = () => {
                  <span className="font-bold uppercase tracking-wide">EASY CEBU</span>
             </div>
             <Home />
+          </div>
+        )}
+
+        {activeView === 'account' && (
+          <div className="flex-1 h-full flex flex-col">
+            <div className="lg:hidden bg-white border-b p-4 flex items-center gap-3">
+                 <button onClick={() => setIsSidebarOpen(true)}>
+                    <Menu size={24} className="text-slate-600"/>
+                 </button>
+                 <span className="font-bold uppercase tracking-wide">MY ACCOUNT</span>
+            </div>
+            <Account userRole={userRole} onLogout={handleLogout} />
           </div>
         )}
 
@@ -238,8 +245,7 @@ const App: React.FC = () => {
           </div>
         )}
 
-        {/* Fallback */}
-        {!['home', 'admin-panel', 'new-product', 'checkout', 'orders', 'products', 'smart-assistant', 'online-catalog', 'coupons', 'customers', 'transactions', 'analytics', 'users', 'settings', 'help'].includes(activeView) && (
+        {!['home', 'account', 'admin-panel', 'new-product', 'checkout', 'orders', 'products', 'smart-assistant', 'online-catalog', 'coupons', 'customers', 'transactions', 'analytics', 'users', 'settings', 'help'].includes(activeView) && (
            <div className="flex-1 flex items-center justify-center flex-col">
               <div className="lg:hidden w-full bg-kyte-dark p-4 text-white flex items-center gap-3 absolute top-0">
                   <button onClick={() => setIsSidebarOpen(true)}>
@@ -250,7 +256,6 @@ const App: React.FC = () => {
               <p className="text-gray-400">View not implemented: {activeView}</p>
            </div>
         )}
-
       </div>
     </div>
   );

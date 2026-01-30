@@ -1,5 +1,16 @@
 import React, { useState, useMemo } from 'react';
-import { Search, Plus, ChevronRight, ShieldCheck, Lock, UserCog, ChevronLeft, Shield, Users as UsersIcon, SlidersHorizontal, ShoppingCart, User as UserIcon, Tag } from 'lucide-react';
+import { 
+  Search, 
+  Plus, 
+  ChevronRight, 
+  ShieldCheck, 
+  Lock, 
+  ChevronLeft, 
+  Users as UserGroupIcon, 
+  SlidersHorizontal, 
+  User as UserIcon, 
+  Tag 
+} from 'lucide-react';
 
 const MOCK_USERS = [
   { id: 1, name: 'Easy Cebu', email: 'easycebu.sales@gmail.com', role: 'Admin', initials: 'EA' },
@@ -95,7 +106,7 @@ export const Users: React.FC = () => {
       style: 'currency',
       currency: 'PHP',
       minimumFractionDigits: 2
-    }).format(p).replace('PHP', '₱');
+    }).format(p).replace('PHP', '\u20b1');
   };
 
   if (managingUser) {
@@ -151,7 +162,7 @@ export const Users: React.FC = () => {
                 <div className="p-6">
                   <div className="mb-6">
                     <h2 className="text-lg font-medium text-slate-700">Tuesday, Jan 27, 2026</h2>
-                    <p className="text-xs text-slate-400 font-light mt-0.5">6 sales, ₱73,065.84</p>
+                    <p className="text-xs text-slate-400 font-light mt-0.5">6 sales, \u20b173,065.84</p>
                   </div>
 
                   <div className="space-y-6">
@@ -288,7 +299,6 @@ export const Users: React.FC = () => {
           </div>
 
           <div className="px-8 py-5 border-b border-slate-50 bg-slate-50/30">
-            {/* White Search Bar for User List */}
             <div className="bg-white border border-slate-200 rounded-lg px-3 py-2 flex items-center gap-3 shadow-sm focus-within:border-emerald-500 transition-all">
               <Search size={18} className="text-slate-400" />
               <input 
@@ -343,7 +353,7 @@ export const Users: React.FC = () => {
               ))
             ) : (
               <div className="flex flex-col items-center justify-center h-full text-slate-300 py-12">
-                <UsersIcon size={48} className="mb-4 opacity-20" />
+                <UserGroupIcon size={48} className="mb-4 opacity-20" />
                 <p className="font-black uppercase tracking-widest text-xs">No users found in this role</p>
               </div>
             )}

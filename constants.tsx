@@ -7,14 +7,14 @@ import {
   Globe,
   Wallet,
   Ticket,
-  Users,
+  Users as UserGroupIcon,
   ArrowRightLeft,
   BarChart2,
   Settings,
   HelpCircle,
-  Users as UsersIcon
+  UserCircle
 } from 'lucide-react';
-import { MenuItem, Product } from './types';
+import { MenuItem, Product } from './types.ts';
 
 export const MENU_ITEMS: MenuItem[] = [
   { id: 'home', label: 'Home', icon: Home },
@@ -25,10 +25,11 @@ export const MENU_ITEMS: MenuItem[] = [
   { id: 'online-catalog', label: 'Online Catalog', icon: Globe },
   { id: 'finance', label: 'Finance', icon: Wallet },
   { id: 'coupons', label: 'Coupons', icon: Ticket, badge: 'NEW', badgeColor: 'green' },
-  { id: 'customers', label: 'Customers', icon: Users },
+  { id: 'customers', label: 'Customers', icon: UserGroupIcon },
   { id: 'transactions', label: 'Transactions', icon: ArrowRightLeft },
   { id: 'analytics', label: 'Analytics', icon: BarChart2 },
-  { id: 'users', label: 'Users', icon: UsersIcon },
+  { id: 'users', label: 'Users', icon: UserGroupIcon },
+  { id: 'account', label: 'Account', icon: UserCircle },
   { id: 'settings', label: 'Settings', icon: Settings },
   { id: 'help', label: 'Help', icon: HelpCircle },
 ];
